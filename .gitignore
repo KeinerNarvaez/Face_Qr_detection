@@ -1,0 +1,7 @@
+Model.xml
+/.venv
+/.idea
+/__pycache__
+*.pyc
+/Data/recognition/*
+!/Data/recognition/.gitkeep
