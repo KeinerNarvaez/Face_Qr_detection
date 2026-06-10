@@ -3,19 +3,24 @@ import os
 import numpy as np
 
 dataPath = "../../Data/recognition/"
-peopleList = os.listdir(dataPath)
+peopleList = []
+#Hago un recorrido para identificar las carpetas ignorando los documentos
+for Path in os.listdir(dataPath):
+    #Uno de forma segura para evitar errores entre dispositivos
+    data = os.path.join(dataPath, Path)
+    if os.path.isdir(data):
+        #Se agrega los nombres al arreglo evitando agregar el de documentos, ejemplo .gitkeep
+        peopleList.append(Path)
 print('Lista de personas',peopleList)
 labels=[]
 facesData = []
 label=0
 
 for nameDir in peopleList:
-    personPath = dataPath + '/' + nameDir
+    personPath = os.path.join(dataPath,nameDir)
     print('Leyendo imagenes')
     for fileName in os.listdir(personPath):
         print('Rostros: ', nameDir+'/'+fileName)
-        labels.append(label)
-        facesData.append(cv2.imread(personPath+'/'+fileName,0))
         image= cv2.imread(personPath+'/'+fileName,0)
         cv2.putText(image, f'Leyendo imagenes', (10, 30), cv2.FONT_ITALIC, 1, (255, 255, 255), 1)
         cv2.putText(image, f'Rostros: {nameDir}', (10, 290), cv2.FONT_ITALIC, 1, (255, 255, 255), 1)
@@ -24,7 +29,7 @@ for nameDir in peopleList:
         image = cv2.resize(image, (300, 300))
         facesData.append(image)
         labels.append(label)
-        cv2.imshow('image',image)
+        cv2.imshow('Reconocimiento',image)
         cv2.waitKey(10)
     label+=1
 cv2.destroyAllWindows()

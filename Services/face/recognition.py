@@ -2,7 +2,14 @@ import cv2
 import os
 import numpy as np
 dataPath = "../../Data/recognition"
-imagePaths = os.listdir(dataPath)
+imagePaths = []
+#Hago un recorrido para identificar las carpetas ignorando los documentos
+for Path in os.listdir(dataPath):
+    #Uno de forma segura para evitar errores entre dispositivos
+    data = os.path.join(dataPath, Path)
+    if os.path.isdir(data):
+        #Se agrega los nombres al arreglo evitando agregar el de documentos, ejemplo .gitkeep
+        imagePaths.append(Path)
 print('imagePaths',imagePaths)
 #face_recognizer = cv2.face.EigenFaceRecognizer_create()
 face_recognizer = cv2.face.LBPHFaceRecognizer_create()
