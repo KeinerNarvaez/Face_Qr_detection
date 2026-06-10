@@ -2,7 +2,7 @@ import cv2
 import os
 import numpy as np
 
-dataPath = "../Data/recognition/"
+dataPath = "../../Data/recognition/"
 peopleList = os.listdir(dataPath)
 print('Lista de personas',peopleList)
 labels=[]
@@ -38,7 +38,7 @@ cv2.putText(imagen,'Entrenando',(10,30),cv2.FONT_ITALIC,1,(255,255,255),1)
 cv2.imshow("Entrenando",imagen)
 cv2.waitKey(100)
 face_recognizer.train(facesData, np.array(labels))
-face_recognizer.write('../Data/models/Model.xml')
+face_recognizer.write('../../Data/models/Model.xml')
 print('Modelo almacenado...')
 imagen[:] = (0,150,30)
 cv2.putText(imagen,'Modelo',(10,30),cv2.FONT_ITALIC,1,(255,255,255),1)

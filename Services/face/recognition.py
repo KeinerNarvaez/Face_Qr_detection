@@ -1,7 +1,7 @@
 import cv2
 import os
 import numpy as np
-dataPath = "../Data/recognition"
+dataPath = "../../Data/recognition"
 imagePaths = os.listdir(dataPath)
 print('imagePaths',imagePaths)
 #face_recognizer = cv2.face.EigenFaceRecognizer_create()
@@ -9,7 +9,7 @@ face_recognizer = cv2.face.LBPHFaceRecognizer_create()
 face_recognizer.read('../Data/models/Model.xml')
 cap = cv2.VideoCapture(0)
 #faceClassifier = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
-net = cv2.dnn.readNetFromCaffe('../Data/models/deploy.prototxt.txt', '../Data/models/res10_300x300_ssd_iter_140000.caffemodel')
+net = cv2.dnn.readNetFromCaffe('../../Data/models/deploy.prototxt.txt', '../Data/models/res10_300x300_ssd_iter_140000.caffemodel')
 while True:
     ret, frame = cap.read()
     if ret == False: break

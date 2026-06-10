@@ -4,7 +4,7 @@ import imutils
 import numpy as np
 
 PersonName = "Keiner"
-dataPath = "../Data/recognition"
+dataPath = "../../Data/recognition"
 personPath = dataPath + '/' + PersonName
 if not os.path.exists(personPath):
     print("Creando el archivos necesarios")
@@ -12,7 +12,7 @@ if not os.path.exists(personPath):
 cap = cv2.VideoCapture(0)
 #faceClassifier = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 #Cambio por dnn porque es mas precisa
-net = cv2.dnn.readNetFromCaffe('../Data/models/deploy.prototxt.txt', '../Data/models/res10_300x300_ssd_iter_140000.caffemodel')
+net = cv2.dnn.readNetFromCaffe('../../Data/models/deploy.prototxt.txt', '../../Data/models/res10_300x300_ssd_iter_140000.caffemodel')
 count = 0
 while True:
     ret, frame = cap.read()
