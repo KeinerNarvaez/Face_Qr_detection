@@ -46,7 +46,7 @@ while True:
                     rostro
                 )
                 count += 1
-    cv2.imshow("frame", frame)
+    cv2.imshow("Reconocimiento", frame)
     k= cv2.waitKey(1)
     if k == 27 or count >=300:
         break

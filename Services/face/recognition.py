@@ -2,7 +2,10 @@ import cv2
 import os
 import numpy as np
 dataPath = "../../Data/recognition"
-imagePaths = os.listdir(dataPath)
+imagePaths = [
+    d for d in os.listdir(dataPath)
+    if os.path.isdir(os.path.join(dataPath, d))
+]
 print('imagePaths',imagePaths)
 #face_recognizer = cv2.face.EigenFaceRecognizer_create()
 face_recognizer = cv2.face.LBPHFaceRecognizer_create()
