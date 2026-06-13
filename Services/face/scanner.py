@@ -3,42 +3,28 @@ import cv2
 import os
 import imutils
 import numpy as np
+from Services.face.face_base import FaceBase
 # endregion
 # region Clase
-class ScannerPerson:
+class ScannerPerson(FaceBase):
     # region Constructor
-    def __init__(self,personName,camera):
-        if not personName.strip():
+    def __init__(self,person_name,camera):
+        super().__init__(camera)
+        if not person_name.strip():
             raise ValueError("El nombre no puede estar vacío")
-        self.personName = personName.strip().title()
-        self.camera = camera
-        self.dataPath = "../../Data/recognition"
-        self.personPath = os.path.join(self.dataPath, self.personName)
-        self.cap = None
+        self.person_name = person_name.strip().title()
+        self.person_path = os.path.join(self.data_path, self.person_name)
         self.count = 0
-        self.net = cv2.dnn.readNetFromCaffe('../../Data/models/deploy.prototxt.txt', '../../Data/models/res10_300x300_ssd_iter_140000.caffemodel')
+        self.net = self.load_detector()
     # endregion
     # region Métodos
     def folder_creation(self):
         try:
-            if not os.path.exists(self.personPath):
+            if not os.path.exists(self.person_path):
                 print("Creando archivos necesarios")
-                os.mkdir(self.personPath)
+                os.mkdir(self.person_path)
         except Exception as ex:
             return f'Error creando archivos necesarios: {ex}'
-
-    def open_camera(self):
-        try:
-            if self.camera == 'Interna':
-                self.cap = cv2.VideoCapture(0)
-            elif self.camera == 'Externa':
-                self.cap = cv2.VideoCapture(1)
-            else:
-                return "Tipo de cámara no válido"
-            if not self.cap.isOpened():
-                return "No se puedo abrir la cámara seleccionada, verifica la cámara"
-        except Exception as ex:
-            return f'Error al indentificar la camara o al crear el archivos necesarios. {ex}'
 
     def detect_and_save_faces(self,blob,frame,w,h,auxFrame):
         try:
@@ -58,7 +44,7 @@ class ScannerPerson:
                     if rostro.size > 0:
                         rostro = cv2.resize(rostro, (300, 300), interpolation=cv2.INTER_CUBIC)
                         cv2.imwrite(
-                            os.path.join(self.personPath, f"rostro_{self.count}.jpg"),
+                            os.path.join(self.person_path, f"rostro_{self.count}.jpg"),
                             rostro
                         )
                         self.count += 1
@@ -92,7 +78,7 @@ class ScannerPerson:
         except Exception as ex:
             return f'Error al detectar rostro: {ex}'
 
-    def detectPerson(self):
+    def detect_person(self):
         try:
             error = self.open_camera()
             if error:
@@ -111,7 +97,3 @@ class ScannerPerson:
             cv2.destroyAllWindows()
     # endregion
 # endregion
-
-dat= ScannerPerson("Papulandia",'Interna')
-print(dat.detectPerson())
-
