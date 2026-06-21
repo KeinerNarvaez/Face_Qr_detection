@@ -1,0 +1,39 @@
+QLabel#Status{
+    max-width: 200px;
+    min-height: 150px;
+    padding: 10px;
+}
+
+QLabel#StatusLabel{
+    background-color: none;
+}
+
+QPushButton {
+    max-width: 300px;
+}
+
+QWidget#LayoutFace {
+    border-radius: 10px;
+    background-color: rgba(48, 49, 52, 35%);
+    padding: 10px;
+}
+
+QScrollBar:vertical {
+    background: transparent;
+    width: 10px;
+    border: none;
+}
+
+QScrollArea ::handle{
+    background: #2563eb;
+    border-radius: 5px;
+    min-height: 20px;
+}
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: transparent;
+}
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0px;
+}

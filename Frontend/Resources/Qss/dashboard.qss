@@ -1,0 +1,35 @@
+QWidget
+QScrollArea,
+QScrollArea {
+    background: transparent;
+}
+QWidget#ItemsTable {
+    border-radius: 10px;
+    background-color: rgba(50, 77, 158, 35%);
+    max-height: 50px;
+}
+QWidget#ItemsTable QLabel{
+    font-size: 20px;
+}
+QWidget#ItemsTable QPushButton{
+    min-height: 10px
+}
+QWidget#Table{
+    max-height: 1000px;
+    background-color: rgba(29, 230, 234, 35%);
+}
+
+QWidget#Header{
+    max-height: 100px;
+    background-color: rgba(221, 60, 216, 35%);
+}
+QLabel{
+    background-color: None;
+}
+QWidget#Header QLabel{
+    font-size: 40px;
+}
+QHBoxLayout{
+        background-color: rgba(50, 77, 158, 35%);
+}
+
