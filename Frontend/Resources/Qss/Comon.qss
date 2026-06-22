@@ -1,0 +1,39 @@
+QWidget{
+    background-color: rgba(20, 20, 20, 220);
+    border-radius: 15px;
+    font-weight: bold;
+}
+QComboBox {
+    border-radius: 10px;
+    padding: 5px;
+    background-color: rgba(48, 49, 52, 35%);
+}
+QLineEdit{
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+    border-bottom: 1px ,solid  #2563eb;
+    background-color: rgba(48, 49, 52, 35%);
+}
+QPushButton {
+    background-color: #2563eb;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+QPushButton:hover {
+    background-color: #3b82f6;
+}
+QPushButton:pressed {
+    background-color: #1d4ed8;
+}
+QToolTip {
+    padding: 5px;
+    border-radius: 10px;
+    background-color: rgba(31, 41, 55, 220);
+    color: #f9fafb;
+}
+
+
+

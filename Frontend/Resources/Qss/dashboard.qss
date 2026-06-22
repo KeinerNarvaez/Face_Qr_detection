@@ -1,0 +1,54 @@
+
+QWidget#ItemsTable {
+    border-radius: 10px;
+    background-color: rgba(50, 77, 158, 35%);
+    max-height: 50px;
+}
+QWidget#ItemsTable QLabel{
+    font-size: 20px;
+}
+QWidget#ItemsTable QPushButton{
+    min-height: 10px
+}
+QWidget#Table{
+    max-height: 1000px;
+    background-color: rgba(29, 230, 234, 35%);
+}
+
+QWidget#Header{
+    max-height: 100px;
+    background-color: rgba(221, 60, 216, 35%);
+}
+QLabel{
+    background-color: None;
+}
+QWidget#Header QLabel{
+    font-size: 40px;
+}
+QHBoxLayout{
+        background-color: rgba(50, 77, 158, 35%);
+}
+QScrollBar{
+    border-radius: 10px;
+}
+
+QScrollBar:vertical {
+    background: transparent;
+    width: 10px;
+    border: none;
+}
+
+QScrollArea ::handle{
+    background: #2563eb;
+    border-radius: 5px;
+    min-height: 20px;
+}
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: transparent;
+}
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+

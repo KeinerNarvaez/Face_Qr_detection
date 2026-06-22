@@ -7,7 +7,7 @@ from Services.face.face_base import FaceBase
 # region Clase
 class Coach(FaceBase):
     # region Constructor
-    def __init__(self,):
+    def __init__(self):
         super().__init__(None)
         self.labels = []
         self.faces_data = []
@@ -74,6 +74,5 @@ class Coach(FaceBase):
     # endregion
     # endregion
 # endregion
-
 
 

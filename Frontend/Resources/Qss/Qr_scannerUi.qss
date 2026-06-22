@@ -1,0 +1,8 @@
+QLabel#qrImage {
+    border-radius: 10px;
+    background-color: rgba(48, 49, 52, 35%);
+    padding: 10px;
+
+}
+
+

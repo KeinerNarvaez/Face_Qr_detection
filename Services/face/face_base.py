@@ -6,11 +6,11 @@ import cv2
 class FaceBase:
     #region Constructor
     def __init__(self,camera):
-        self.data_path = "../../Data/recognition/"
-        self.model_path = "../../Data/models/Model.xml"
+        self.data_path = "Data/recognition/"
+        self.model_path = "Data/models/Model.xml"
         self.people_list = []
-        self.face_model_path = '../../Data/models/res10_300x300_ssd_iter_140000.caffemodel'
-        self.prototxt_path ='../../Data/models/deploy.prototxt.txt'
+        self.face_model_path = 'Data/models/res10_300x300_ssd_iter_140000.caffemodel'
+        self.prototxt_path ='Data/models/deploy.prototxt.txt'
         self.camera = camera
         self.cap=None
     #endregion
@@ -37,6 +37,8 @@ class FaceBase:
                 self.cap = cv2.VideoCapture(0)
             elif self.camera == 'Externa':
                 self.cap = cv2.VideoCapture(1)
+            elif self.camera == 'Telefono':
+                self.cap = cv2.VideoCapture(2)
             else:
                 return "Tipo de cámara no válido"
             if not self.cap.isOpened():
