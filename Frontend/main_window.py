@@ -23,7 +23,7 @@ class MainWindow(QWidget):
         self.status = QLabel()
         self.camera = QComboBox()
         self.camera.addItems(["Interna", "Externa","Telefono"])
-        self.btn_face = QPushButton("Reconocimiento Facial")
+        self.btn_face = QPushButton("Reconocimiento facial")
         self.btn_qr = QPushButton("Escanear QR")
 
         layout = QVBoxLayout()
@@ -54,7 +54,7 @@ class MainWindow(QWidget):
             )
         elif camera == "Telefono":
             self.camera.setToolTip(
-                "Utiliza DroidCam o aplicaciones similares para usar el teléfono como cámara."
+                "Utiliza DroidCam o aplicaciones similares para usar el teléfono como cámara.(en caso de algun fallo comprueba con tipo de cámara Externa)"
             )
 
     def face_detector(self):

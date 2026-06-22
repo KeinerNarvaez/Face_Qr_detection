@@ -7,9 +7,11 @@ class QrScanner():
     def __init__(self,camera):
         self.camera = camera
         self.qrDetect = cv2.QRCodeDetector()
+
         self.cap = None
         self.data = None
         self.rectifiedImage= None
+
     # endregion
     #region Metodos
     def open_camera(self):
@@ -19,7 +21,7 @@ class QrScanner():
             elif self.camera == 'Externa':
                 self.cap = cv2.VideoCapture(1)
             elif self.camera == 'Telefono':
-                self.cap = cv2.VideoCapture(2)
+                self.cap = cv2.VideoCapture(3)
             else:
                 return "Tipo de cámara no válido."
             if not self.cap.isOpened():
@@ -33,10 +35,10 @@ class QrScanner():
             print(f'Dato: {self.data}')
 
             self.rectifiedImage = cv2.resize(self.rectifiedImage, (300,300), interpolation = cv2.INTER_AREA)
-            cv2.imshow("Detectar Qr",self.rectifiedImage)
+            cv2.imshow("Detector Qr",self.rectifiedImage)
             cv2.waitKey(3000)
         else:
-            cv2.imshow("Detectar Qr",frame)
+            cv2.imshow("Detector Qr",frame)
 
     def get_image(self):
         return self.rectifiedImage

@@ -86,22 +86,35 @@ class DetectPersonUi(QWidget):
 
 
     def face_detection(self):
-        recognition = Recognition(
-            self.camera
-        )
-        recognition.detect()
+        try:
+            recognition = Recognition(
+                self.camera
+            )
+            recognition.detect()
+        except Exception as ex:
+            self.status.setText("Error inesperado abriendo pestaña de detección")
+
     def detect_person(self):
-        person = ScannerPerson(self.input_name.text(), self.camera)
-        self.status.setText(person.detect_person())
+        try:
+            if self.input_name.text() != "":
+                person = ScannerPerson(self.input_name.text(), self.camera)
+                self.status.setText(person.detect_person())
+            else:
+                self.status.setText("Ingrese un nombre")
+        except Exception as ex:
+            self.status.setText("Error inesperado abriendo pestaña de escaner")
 
     def train_model(self):
-        self.status.setText("Entrenando...")
-        coach = Coach()
-        self.status.setText(coach.load_training_data())
+        try:
+            self.status.setText("Entrenando...")
+            coach = Coach()
+            self.status.setText(coach.load_training_data())
+        except Exception as ex:
+            self.status.setText("Error inesperado abriendo pestaña de entrenamiento")
 
     def open_dashboard(self):
         try:
             self.dashboard = DashboardPersonUi()
             self.dashboard.show()
         except Exception as ex:
-            return ex
+            self.status.setText("Error inesperado abriendo pestaña de lista de personas")

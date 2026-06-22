@@ -2,7 +2,7 @@ from PyQt6.QtCore import Qt, QSize
 from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QWidget, QLabel, QHBoxLayout, QVBoxLayout, QListWidget, QPushButton, QScrollArea
 from Services.dashboard.dashboard_person import DashboardPerson
-
+from Frontend.Dashboard.Dialog.modify_user_dialog import ModifyUserDialog
 
 class DashboardPersonUi(QWidget):
     def __init__(self):
@@ -60,10 +60,12 @@ class DashboardPersonUi(QWidget):
         # Layouts
         # =========================
         self.TableLayout = QVBoxLayout()
-        main_body = QVBoxLayout()
+        self.main_body = QVBoxLayout()
         main_header = QHBoxLayout()
         layout_main = QVBoxLayout()
         header_layout = QVBoxLayout()
+
+        self.scroll_item_people = QScrollArea()
         # =========================
         # Construcción interfaz
         # =========================
@@ -71,14 +73,14 @@ class DashboardPersonUi(QWidget):
         header_widget.setLayout(header_layout)
         main_header.addWidget(header_widget)
         table_container.setLayout(self.TableLayout)
-        main_body.addWidget(table_container)
+        self.main_body.addWidget(table_container)
         layout_main.addLayout(main_header)
-        layout_main.addLayout(main_body)
+        layout_main.addLayout(self.main_body)
 
         # =========================
         # Cargar datos
         # =========================
-        self.list_persons()
+        self.list_peoples()
 
         # =========================
         # Layout principal
@@ -90,15 +92,23 @@ class DashboardPersonUi(QWidget):
 
     def delete(self, person):
         self.objectDashboard.delete_person(person)
+        self.list_peoples()
+
+    def modify(self, current_name):
+        dialog = ModifyUserDialog(current_name)
+
+        if dialog.exec():
+            new_name = dialog.get_name()
+
+            if new_name:
+                self.objectDashboard.modify_name(current_name,new_name)
+            self.list_peoples()
 
 
-    def modify(self, current_name,new_name):
-        self.objectDashboard.modify_name(current_name,new_name)
-
-    def list_persons(self):
+    def list_peoples(self):
         try:
             names = self.persons()
-            scroll_item_people = QScrollArea()
+
             container = QWidget()
             container.setObjectName("ScrollItems")
             container_layout = QVBoxLayout()
@@ -118,8 +128,8 @@ class DashboardPersonUi(QWidget):
                 container_layout.addWidget(row_widget)
                 container.setLayout(container_layout)
 
-            scroll_item_people.setWidget(container)
-            scroll_item_people.setWidgetResizable(True)
-            self.TableLayout.addWidget(scroll_item_people)
+            self.scroll_item_people.setWidget(container)
+            self.scroll_item_people.setWidgetResizable(True)
+            self.TableLayout.addWidget(self.scroll_item_people)
         except Exception as ex:
             return ex
